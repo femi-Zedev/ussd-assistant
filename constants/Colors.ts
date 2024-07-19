@@ -7,7 +7,7 @@ const primary = {
 const light: Theme = {
   text: '#000',
   background: '#fff',
-  primary_base: primary[400]
+  primary_base: primary[400],
 }
 
 const dark: Theme = {

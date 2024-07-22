@@ -1,19 +1,27 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
+import { Theme } from "@/providers/theme/Theme.interface";
 
-export default {
-  light: {
-    text: '#000',
-    background: '#fff',
-    tint: tintColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#fff',
-    background: '#000',
-    tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
-  },
-};
+const primary = {
+  400: '#4DB6C3',
+  500: '#319AA9',
+}
+const light: Theme = {
+  text: '#000',
+  background: '#fff',
+  primary_base: primary[400],
+}
+
+const dark: Theme = {
+  text: '#fff',
+  background: '#161616',
+  primary_base: primary[500]
+}
+
+
+
+export default { light, dark }
+
+export function getThemeColor(colorSheme: 'light' | 'dark'): Theme {
+
+  return colorSheme == 'dark' ? dark : light;
+
+}

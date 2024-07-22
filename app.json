@@ -30,14 +30,34 @@
       "expo-router",
       [
         "expo-asset",
-  
         {
-          "assets": ["./assets/slider/slider1.png"]
+          "assets": [
+            "../assets/slider/slider1.png"
+          ]
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "node_modules/@expo-google-fonts/nunito/Nunito_500Medium.ttf",
+            "node_modules/@expo-google-fonts/nunito/Nunito_600SemiBold.ttf",
+            "node_modules/@expo-google-fonts/nunito/Nunito_700Bold.ttf",
+            "node_modules/@expo-google-fonts/nunito/Nunito_800ExtraBold.ttf"
+          ]
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "85a72e4a-eae0-4fb9-83d5-85ba417f3694"
+      }
     }
   }
 }

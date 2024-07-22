@@ -39,12 +39,7 @@
       [
         "expo-font",
         {
-          "fonts": [
-            "node_modules/@expo-google-fonts/nunito/Nunito_500Medium.ttf",
-            "node_modules/@expo-google-fonts/nunito/Nunito_600SemiBold.ttf",
-            "node_modules/@expo-google-fonts/nunito/Nunito_700Bold.ttf",
-            "node_modules/@expo-google-fonts/nunito/Nunito_800ExtraBold.ttf"
-          ]
+          "fonts": ["./assets/fonts/Nunito-ExtraBold.ttf", "./assets/fonts/Nunito-SemiBold.ttf"]
         }
       ]
     ],

@@ -978,11 +978,6 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@expo-google-fonts/nunito@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@expo-google-fonts/nunito/-/nunito-0.2.3.tgz#d226372ab582bc285873a61382d619c17abd5c19"
-  integrity sha512-z+Bx3IuT0t3jguoMxiyWuC7pW3wDVNHgYko/G9V23QhR/yDSjEsT+Kx+VGDT/hu9TXSxw3CtpQ5MFHikqSVDYw==
-
 "@expo/apple-utils@1.7.1":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@expo/apple-utils/-/apple-utils-1.7.1.tgz#b072cc95ace4fed734d088740eff9945e8f4d22e"

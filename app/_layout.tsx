@@ -74,7 +74,7 @@ export default function App() {
         {/* Button de navigation */}
 
         <View style={{ marginTop: 90, marginHorizontal: 24, flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Button title='Passer' variant="transparent" />
+          <Button title='Démarrer' variant="transparent" />
           <IconButton
             onPress={onNextStep}
             icon={<AntDesign name="arrowright" size={24}color="black" />} />

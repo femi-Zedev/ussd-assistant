@@ -13,11 +13,13 @@ export default StyleSheet.create({
   body20: {
     fontSize: 20,
     color: "#FFFFFF",
+    fontFamily: 'Nunito-ExtraBold'
     // fontFamily: 'Nunito_600SemiBold'
   },
   title28: {
     fontSize: 28,
     color: "#FFFFFF",
+    fontFamily: 'Nunito-ExtraBold'
     // fontFamily: 'Nunito_800ExtraBold'
   }
   

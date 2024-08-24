@@ -1,15 +1,18 @@
 import React from 'react';
-import { Text, StyleSheet, Pressable, PressableProps, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, Pressable, PressableProps, TouchableOpacity, GestureResponderEvent } from 'react-native';
 
-interface ButtonProps extends PressableProps {
+// interface ButtonProps extends PressableProps {
+  interface ButtonProps {
+
   title: string;
-  variant: 'filled' | 'transparent'
+  variant: 'filled' | 'transparent',
+  onPress?: (vent: GestureResponderEvent) => void;
 }
 
 export default function Button(props: ButtonProps) {
   const { onPress, title, variant  } = props;
   return (
-    <TouchableOpacity style={[styles.button, variant == 'filled' ? styles.variantFilled : styles.variantTransparent]} onPress={()=>{}}>
+    <TouchableOpacity style={[styles.button, variant == 'filled' ? styles.variantFilled : styles.variantTransparent]} onPress={props.onPress}>
       <Text style={[styles.text, variant == 'filled' ? { color: 'black'}: { color : 'white'} ]}>{title}</Text>
     </TouchableOpacity>
   );

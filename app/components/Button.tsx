@@ -1,20 +1,22 @@
 import React from 'react';
-import { Text, StyleSheet, Pressable, PressableProps, TouchableOpacity, GestureResponderEvent } from 'react-native';
+import { Text, StyleSheet, Pressable, PressableProps, TouchableOpacity, GestureResponderEvent, StyleProp } from 'react-native';
 
 // interface ButtonProps extends PressableProps {
-  interface ButtonProps {
-
+interface ButtonProps {
   title: string;
   variant: 'filled' | 'transparent',
   onPress?: (vent: GestureResponderEvent) => void;
+  buttonStyle?: StyleProp<any>;
 }
 
 export default function Button(props: ButtonProps) {
-  const { onPress, title, variant  } = props;
+  const { onPress, title, variant, buttonStyle } = props;
   return (
-    <TouchableOpacity style={[styles.button, variant == 'filled' ? styles.variantFilled : styles.variantTransparent]} onPress={props.onPress}>
-      <Text style={[styles.text, variant == 'filled' ? { color: 'black'}: { color : 'white'} ]}>{title}</Text>
-    </TouchableOpacity>
+    <Pressable
+      style={[ styles.button, variant == 'filled' ? styles.variantFilled : styles.variantTransparent, buttonStyle ]}
+      onPress={onPress}>
+      <Text style={[styles.text, variant == 'filled' ? { color: 'black' } : { color: 'white' }]}>{title}</Text>
+    </Pressable>
   );
 }
 
@@ -23,15 +25,15 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 10,
+    paddingVertical: 12,
     paddingHorizontal: 32,
-    borderRadius: 12,
+    borderRadius: 10,
     elevation: 3,
   },
   text: {
     fontSize: 16,
     lineHeight: 21,
-    fontWeight: 'bold',
+    fontWeight: '900',
     letterSpacing: 0.25,
   },
   variantFilled: {

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { LinearGradient } from 'expo-linear-gradient';
-import { StyleSheet, Text, useColorScheme, View } from "react-native";
-import globalStyles from '@/app/globalStyle'
+import { StyleSheet, Text, View } from "react-native";
+import globalStyles from '@/app/globalStyle';
+import { router } from 'expo-router';
 
 
 import { Image } from 'expo-image';
@@ -10,6 +11,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import PagerView from 'react-native-pager-view';
 import Button from "@/app/components/Button";
 import IconButton from "@/app/components/IconButton";
+import useAppStore from "../store/appData";
 
 interface Step {
   title: string;
@@ -36,7 +38,8 @@ const steps: Step[] = [
 ]
 
 export default function Onboarding() {
-  
+
+  const { setFirstAppLaunch } = useAppStore();
 
   const [page, setPage] = useState(0);
   const pagerRef = useRef(null);
@@ -49,63 +52,71 @@ export default function Onboarding() {
       pagerRef.current.setPage(page + 1); // Programmatically move to the next page
     }
   };
+
+  const handleStart = () => {
+    setPage(2);
+    // @ts-ignore
+    pagerRef.current.setPage(2); // Programmatically move to the next page
+  }
+  
+  const handleNavigateHome = () => {
+    router.push('(tabs)');
+    setFirstAppLaunch(false);
+  }
   return (
     <View style={globalStyles.page}>
 
 
-        <PagerView
-          ref={pagerRef}
-          style={styles.carouselWrapper}
-          onPageSelected={(e) => setPage(e.nativeEvent.position)}
-          initialPage={0}
-        >
-          {steps.map((step, page) => (
-            <>
-              <CarouselView
-                key={page}
-                image={step.image}
-                title={step.title}
-                desc={step.desc} />
-            </>
+      <PagerView
+        ref={pagerRef}
+        style={styles.carouselWrapper}
+        onPageSelected={(e) => setPage(e.nativeEvent.position)}
+        initialPage={0}
+      >
+        {steps.map((step, page) => (
+          <CarouselView
+            key={page}
+            image={step.image}
+            title={step.title}
+            desc={step.desc} />
+        ))}
+      </PagerView>
+
+      <View style={{ flex: 1, paddingBottom: 30, }}>
+        <View style={styles.stepper}>
+          {[0, 1, 2].map((index) => (
+            <View
+              key={index}
+              style={{
+                width: 40,
+                height: 10,
+                borderRadius: 8,
+                backgroundColor: index === page ? '#FFFFFF' : '#5B5B5B',
+              }}
+            />
           ))}
-        </PagerView>
-
-        <View style={{ flex: 1, paddingBottom: 30, }}>
-          <View style={styles.stepper}>
-            {[0, 1, 2].map((index) => (
-              <View
-                key={index}
-                style={{
-                  width: 40,
-                  height: 10,
-                  borderRadius: 8,
-                  backgroundColor: index === page ? '#FFFFFF' : '#5B5B5B',
-                }}
-              />
-            ))}
-          </View>
-
-          {/* Button de navigation */}
-
-          {page < 2 ?
-
-            <>
-              <View style={{ marginTop: 80, marginHorizontal: 24, display: "flex", flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Button title='Passer' variant="transparent" />
-                <IconButton
-                  onPress={() => handleNext()}
-                  icon={<AntDesign name="arrowright" size={24} color="black" />} />
-              </View>
-            </>
-            :
-            <View style={{ marginTop: 100,  display: "flex", justifyContent: 'center', alignItems: 'center' }}>
-              <Button buttonStyle={{ width: '100%', maxWidth: 300, }} title='Démarrer !' variant="filled" />
-            </View>
-
-          }
         </View>
 
+        {/* Button de navigation */}
+
+        {page < 2 ?
+          <>
+            <View style={{ marginTop: 80, marginHorizontal: 24, display: "flex", flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Button title='Passer' variant="transparent" onPress={() => handleStart()} />
+              <IconButton
+                onPress={() => handleNext()}
+                icon={<AntDesign name="arrowright" size={24} color="black" />} />
+            </View>
+          </>
+          :
+          <View style={{ marginTop: 80, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
+            <Button buttonStyle={{ width: '100%', maxWidth: 300, }} title='Démarrer !' variant="filled" onPress={() => handleNavigateHome()} />
+          </View>
+
+        }
       </View>
+
+    </View>
   )
 }
 

@@ -5,7 +5,7 @@ import { Text, StyleSheet, Pressable, PressableProps, TouchableOpacity, GestureR
 interface ButtonProps {
   title: string;
   variant: 'filled' | 'transparent',
-  onPress?: (vent: GestureResponderEvent) => void;
+  onPress?: (event: GestureResponderEvent) => void;
   buttonStyle?: StyleProp<any>;
 }
 

@@ -8,7 +8,8 @@ export default StyleSheet.create({
     flex: 1,
     color: "#FFFFFF",
     backgroundColor: getThemeColor('dark').background,
-    maxWidth: '100%'
+    maxWidth: '100%',
+    maxHeight: '100%',
   },
   body20: {
     fontSize: 20,

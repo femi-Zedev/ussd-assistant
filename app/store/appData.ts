@@ -1,4 +1,4 @@
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
@@ -9,17 +9,16 @@ interface AppData {
 
 
 const useAppStore = create<AppData>()(
-  devtools(
     persist(
-      (set) => ({
+      (set, get) => ({
         firstAppLaunch: true,
         setFirstAppLaunch: (value) => set(() => ({ firstAppLaunch: value })),
       }),
       {
         name: "AppData",
+        getStorage: () => AsyncStorage,
       }
       )
-    )
   );
 
 export default useAppStore;

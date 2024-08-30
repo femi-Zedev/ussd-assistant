@@ -1,11 +1,26 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import React from 'react'
-import Colors from '@/constants/Colors';
+import React from 'react';
 import { useTheme } from '@/providers/theme/Theme.provider';
+import { Menu } from '@/app/icons/menu';
+import { Clock } from '@/app/icons/clock';
+import { Scan } from '@/app/icons/scan';
+
+type Route = {
+  key: string;
+  name: string;
+  params?: Record<string, any>; // params are optional and can be of any type
+};
+
 
 function TabBar({ state, descriptors, navigation }: { state: any, descriptors: any, navigation: any }) {
 
-  const { primary_dark, primary_base, background } = useTheme();
+  const { primary_dark, primary_base, primary_medium, background } = useTheme();
+
+  const icons: Record<string, (props: any) => JSX.Element> = {
+    index: (props) => <Menu color={primary_base} {...props} />,
+    recent: (props) => <Clock color={primary_base} {...props} />,
+    scan: (props) => <Scan color={primary_base} {...props} />,
+  }
 
   const styles = StyleSheet.create({
 
@@ -14,7 +29,8 @@ function TabBar({ state, descriptors, navigation }: { state: any, descriptors: a
       flexDirection: 'row',
       width: '100%',
       paddingHorizontal: 24,
-      paddingVertical: 16,
+      paddingTop: 16,
+      paddingBottom: 30,
       justifyContent: 'space-between',
       alignItems: 'center',
       gap: 12,
@@ -43,7 +59,7 @@ function TabBar({ state, descriptors, navigation }: { state: any, descriptors: a
 
   return (
     <View style={styles.tabBar}>
-      {state.routes.map((route: any, index: number) => {
+      {state.routes.map((route: Route, index: number) => {
         const { options } = descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
@@ -85,17 +101,18 @@ function TabBar({ state, descriptors, navigation }: { state: any, descriptors: a
 
           >
             <View style={[styles.tabBarItem, { backgroundColor: isFocused ? primary_dark : 'transparent' }]}>
-
-              <View style={{ width: 24, height: 24, backgroundColor: primary_base, borderRadius: 6, }} />
-
-              {isFocused &&
+              {
+                icons[route.name]({
+                  color: isFocused ? primary_base : primary_medium,
+                })
+              }
+              {
+                isFocused &&
                 <Text style={styles.tabBarItemLabel}>
                   {label}
                 </Text>
               }
-
             </View>
-
           </TouchableOpacity>
         );
       })}

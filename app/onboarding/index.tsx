@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
 
   title28_specific: {
     marginTop: 30,
-    fontWeight: 'bold',
+    fontWeight: '800',
   },
   stepper: {
     marginHorizontal: 'auto',

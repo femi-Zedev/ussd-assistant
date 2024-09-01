@@ -11,6 +11,19 @@ export default StyleSheet.create({
     maxWidth: '100%',
     maxHeight: '100%',
   },
+
+  wrapper: {
+    maxWidth: '100%',
+    width: '100%',
+    paddingHorizontal: 20,
+  },
+  
+  container: {
+    flex: 1,
+    maxWidth: '100%',
+    maxHeight: '100%',
+  },
+
   body20: {
     fontSize: 20,
     color: "#FFFFFF",
@@ -22,6 +35,50 @@ export default StyleSheet.create({
     color: "#FFFFFF",
     fontFamily: 'Nunito-ExtraBold'
     // fontFamily: 'Nunito_800ExtraBold'
-  }
+  },
+
+  text18SemiBold: {
+    fontSize: 18,
+    color: "#FFFFFF",
+    fontFamily: 'Nunito-Regular',
+    fontWeight: '700'
+    // fontFamily: 'Nunito_400Regular'
+  },
+
+  text18Bold: {
+    fontSize: 18,
+    color: "#FFFFFF",
+    fontFamily: 'Nunito-Regular',
+    fontWeight: '800'
+    // fontFamily: 'Nunito_400Regular'
+  },
+
+  text18ExtraBold: {
+    fontSize: 18,
+    color: "#FFFFFF",
+    fontFamily: 'Nunito-Regular',
+    fontWeight: '900'
+  },
+
+  text12SemiBold: {
+    fontSize: 12,
+    color: "#FFFFFF",
+    fontFamily: 'Nunito-SemiBold',
+    fontWeight: '700'
+  },
+
+  text12ExtraBold: {
+    fontSize: 12,
+    color: "#FFFFFF",
+    fontFamily: 'Nunito-SemiBold',
+    fontWeight: '900'
+  },
+
+  text12Medium: {
+    fontSize: 12,
+    color: "#FFFFFF",
+    fontFamily: 'Nunito-SemiBold',
+    fontWeight: '600'
+  },
   
 })

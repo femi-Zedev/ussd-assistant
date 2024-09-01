@@ -9,6 +9,9 @@ import TabBar from '../components/TabBar';
 export default function _layout() {
   return (
     <Tabs
+      screenOptions={{
+        headerShown: false,
+      }}
       tabBar={props => <TabBar {...props} />}
       sceneContainerStyle={globalStyles.page}>
       <Tabs.Screen

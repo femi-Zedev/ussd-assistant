@@ -6,6 +6,8 @@ import Onboarding from "./onboarding";
 import useAppStore from "./store/appData";
 import { useEffect } from "react";
 import { router, Slot } from "expo-router";
+import { SearchProvider } from "./providers/search.provider";
+import { MenuProvider } from "react-native-popup-menu";
 export default function App({ children }: { children: any }) {
 
   const colorScheme = useColorScheme();
@@ -27,7 +29,11 @@ export default function App({ children }: { children: any }) {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? Colors.dark : Colors.light}>
-      <Slot />
+      <SearchProvider>
+      <MenuProvider>
+        <Slot />
+      </MenuProvider>
+      </SearchProvider>
     </ThemeProvider>
   );
 }

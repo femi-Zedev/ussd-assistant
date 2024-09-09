@@ -1,10 +1,11 @@
-import { View, Text, TextInput, StyleSheet, StyleProp } from 'react-native'
-import React from 'react'
-import { EvilIcons } from '@expo/vector-icons';
+import { View, Text, TextInput, StyleSheet, StyleProp, Touchable, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import { EvilIcons, Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
+import { useSearchValue } from '../providers/search.provider';
 
 interface SearchInputProps {
-  onChange?: (value: string) => void,
+  onChange: (value: string) => void,
   placeholder: string,
   autoFocus?: boolean,
   style?: StyleProp<any>,
@@ -12,19 +13,36 @@ interface SearchInputProps {
 
 export default function SearchInput({ onChange, style, autoFocus, placeholder }: SearchInputProps) {
 
+ const { searchValue, setSearchValue } = useSearchValue()
+
+  function handleChange(value: string) {
+    setSearchValue(value)
+    onChange(value)
+  }
+
 
   return (
     <View style={[styles.container, { backgroundColor: Colors.gray.light }, style]}>
-      <EvilIcons name="search" size={24} color="#BBBBBB" />
+      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+        <EvilIcons name="search" size={24} color="#BBBBBB" />
 
-      <TextInput
-        style={styles.textInput}
-        autoFocus={autoFocus}
-        onChangeText={onChange}
-        placeholder={placeholder}
-        keyboardType="default"
-        selectionColor="red"
-      />
+        <TextInput
+          style={styles.textInput}
+          autoFocus={autoFocus}
+          onChangeText={(value) => handleChange(value)}
+          placeholder={placeholder}
+          value={searchValue}
+          keyboardType="default"
+          selectionColor="red"
+        />
+      </View>
+
+
+      {searchValue.length > 0 && (
+        <TouchableOpacity style={{ height: 20, width: 20, borderRadius: 12}} onPress={() => setSearchValue('')}>
+          <Ionicons name="close-circle-sharp" size={20} color="#BBBBBB"  />
+        </TouchableOpacity>
+      )}
     </View>
   )
 }
@@ -35,6 +53,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     gap: 4,
     paddingHorizontal: 12,
     paddingVertical: 14,

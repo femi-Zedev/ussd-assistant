@@ -30,6 +30,7 @@ export default StyleSheet.create({
     fontFamily: 'Nunito-ExtraBold'
     // fontFamily: 'Nunito_600SemiBold'
   },
+
   title28: {
     fontSize: 28,
     color: "#FFFFFF",
@@ -58,6 +59,22 @@ export default StyleSheet.create({
     color: "#FFFFFF",
     fontFamily: 'Nunito-Regular',
     fontWeight: '900'
+  },
+
+  text16ExtraBold: {
+    fontSize: 16,
+    color: "#FFFFFF",
+    fontFamily: 'Nunito-ExtraBold',
+    fontWeight: '800'
+    // fontFamily: 'Nunito_600SemiBold'
+  },
+
+  text16Medium: {
+    fontSize: 16,
+    color: "#FFFFFF",
+    fontFamily: 'Nunito-ExtraBold',
+    fontWeight: '600'
+    // fontFamily: 'Nunito_600SemiBold'
   },
 
   text12SemiBold: {

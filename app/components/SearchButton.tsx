@@ -2,26 +2,37 @@ import { View, Text, TouchableOpacity, StyleProp, GestureResponderEvent, StyleSh
 import React from 'react'
 import { router } from 'expo-router';
 import { EvilIcons } from '@expo/vector-icons';
+import { BlurView } from 'expo-blur';
 
 
 export default function SearchButton() {
   return (
-    <TouchableOpacity
-      accessibilityRole="button"
-      style={styles.button}
-      onPress={() => router.push('/search')}>
-      <EvilIcons name="search" size={24} color="white" />
-      <Text style={styles.text}>rechercher</Text>
-    </TouchableOpacity>
+    <BlurView tint='light' intensity={8} style={styles.blurContainer}>
+      <TouchableOpacity
+        accessibilityRole="button"
+        style={styles.button}
+        onPress={() => router.push('/search')}>
+        <EvilIcons name="search" size={24} color="white" />
+        <Text style={styles.text}>rechercher</Text>
+      </TouchableOpacity>
+    </BlurView>
+
   )
 }
 
 
 const styles = StyleSheet.create({
-  button: {
+  blurContainer: {
     marginTop: 'auto',
     marginBottom: 20,
     marginHorizontal: 'auto',
+    borderRadius: 20,
+    overflow: 'hidden',
+    borderWidth: 0.5,
+    borderColor: '#19191933', 
+  },
+
+  button: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -29,9 +40,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     gap: 4,
     borderRadius: 20,
-    elevation: 3,
-    backgroundColor: '#222728',
   },
+
   text: {
     fontSize: 14,
     fontWeight: '500',

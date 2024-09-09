@@ -4,8 +4,34 @@ import SearchButton from '@/app/components/SearchButton';
 import globalStyles from '@/app/globalStyle';
 import { useTheme } from '@/providers/theme/Theme.provider';
 import colors from '@/constants/Colors';
+import Accordion from '../components/Accordion';
+import Button from '../components/Button';
+import { PhoneRinging } from '../icons/phone-ringing';
+import { Globe } from '../icons/globe';
+import { Wallet } from '../icons/wallet';
 
 const tabs = ['MTN', 'MOOV', 'CELTIIS']
+
+const Services = [
+  {
+    title: 'Appels',
+    subTitle: 'Pré et post payé, forfaits',
+    icon: <PhoneRinging color='#FFFFFF' />,
+    
+  },
+  {
+    title: 'Internet',
+    subTitle: 'Service internet, solde ...',
+    icon: <Globe color='#FFFFFF' />,
+    
+  },
+  {
+    title: 'Mobile Money',
+    subTitle: 'Pré et post payé, forfaits',
+    icon: <Wallet color='#FFFFFF' />,
+    
+  },
+]
 
 
 export default function index() {
@@ -14,27 +40,56 @@ export default function index() {
 
   return (
     <View style={globalStyles.container}>
-      <View style={[globalStyles.wrapper,{ marginTop: 60 }]}> 
 
-        <Text style={styles.tabTitle}>Opérateurs</Text>
+      <View style={[globalStyles.wrapper, { marginTop: 70 }]}>
+
+        <Text style={[styles.tabTitle, { marginVertical: 14}]}>Opérateurs</Text>
 
         <View style={styles.tabsContainer}>
           {tabs.map((tab, index) => (
-            <Tab key={index} label={tab} isActive={activeTab === index} onPress={ () => setActiveTab(index) } />
+            <Tab key={index} label={tab} isActive={activeTab === index} onPress={() => setActiveTab(index)} />
           ))}
         </View>
 
+        <View style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 32 }}>
+          <View style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%' }}>
+
+            <Text style={styles.tabTitle}>Services</Text>
+
+            {Services.map((service, index) => (
+              <Accordion
+                key={index}
+                title={service.title}
+                subTitle={service.subTitle}
+                icon={service.icon} >
+
+                <Text style={styles.textSmall}>React components wrap existing native code
+                  and interact with native APIs via React’s declarative UI paradigm
+                  and JavaScript. This enables native app development for whole new teams
+                  of developers</Text>
+                <View style={styles.seperator}></View>
+                <Button title='Something' variant='filled' />
+              </Accordion>
+            ))}
+
+          </View>
+
+        </View>
+
+
+
       </View>
-      
+
+
+
       <SearchButton />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  
-  tabTitle: { 
-    marginVertical: 18, 
+
+  tabTitle: {
     ...globalStyles.text18SemiBold
   },
 
@@ -66,23 +121,31 @@ const styles = StyleSheet.create({
   textInactive: {
     ...globalStyles.text12Medium
   },
-  
+
   textActive: {
     ...globalStyles.text12ExtraBold
   },
+
+  // to remove
+  textSmall: {
+    fontSize: 16
+  },
+  seperator: {
+    height: 12
+  }
 
 });
 
 function Tab({ label, isActive, onPress }: { label: string, isActive: boolean, onPress?: () => void }) {
 
-  const { primary_base, } = useTheme();
+  const { primary_base } = useTheme();
 
-  return (    
-    <TouchableOpacity 
-      onPress={ onPress }
-      style={[styles.tab, isActive ? {backgroundColor: primary_base} : styles.tab_inactive ]}>  
-      <View style={{width: 16, height: 16, backgroundColor: "white", borderRadius: 12}} />
-      <Text style={ isActive ? styles.textActive : styles.textInactive}>{label}</Text>
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.tab, isActive ? { backgroundColor: primary_base } : styles.tab_inactive]}>
+      <View style={{ width: 16, height: 16, backgroundColor: "white", borderRadius: 12 }} />
+      <Text style={isActive ? styles.textActive : styles.textInactive}>{label}</Text>
     </TouchableOpacity>
-  );  
+  );
 } 

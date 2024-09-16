@@ -4582,6 +4582,11 @@ expo-blur@~13.0.2:
   resolved "https://registry.yarnpkg.com/expo-blur/-/expo-blur-13.0.2.tgz#c2d179b19b13830db1d8b90c51373235f462e958"
   integrity sha512-t2p7BChO3Reykued++QJRMZ/og6J3aXtSQ+bU31YcBeXhZLkHwjWEhiPKPnJka7J2/yTs4+jOCNDY0kCZmcE3w==
 
+expo-clipboard@~6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/expo-clipboard/-/expo-clipboard-6.0.3.tgz#dfea74d4a004dce59ecefd063d6fb9f1c356a03f"
+  integrity sha512-RIKDsuHkYfaspifbFpVC8sBVFKR05L7Pj7mU2/XkbrW9m01OBNvdpGraXEMsTFCx97xMGsZpEw9pPquL4j4xVg==
+
 expo-constants@~16.0.0:
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-16.0.1.tgz#1285e29c85513c6e88e118289e2baab72596d3f7"

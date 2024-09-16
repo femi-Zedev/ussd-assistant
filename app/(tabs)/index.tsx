@@ -9,6 +9,8 @@ import Button from '../components/Button';
 import { PhoneRinging } from '../icons/phone-ringing';
 import { Globe } from '../icons/globe';
 import { Wallet } from '../icons/wallet';
+import CodeItem from '../components/CodeItem';
+import Colors from '@/constants/Colors';
 
 const tabs = ['MTN', 'MOOV', 'CELTIIS']
 
@@ -17,20 +19,25 @@ const Services = [
     title: 'Appels',
     subTitle: 'Pré et post payé, forfaits',
     icon: <PhoneRinging color='#FFFFFF' />,
-    
+
   },
   {
     title: 'Internet',
     subTitle: 'Service internet, solde ...',
     icon: <Globe color='#FFFFFF' />,
-    
+
   },
   {
     title: 'Mobile Money',
     subTitle: 'Pré et post payé, forfaits',
     icon: <Wallet color='#FFFFFF' />,
-    
+
   },
+]
+
+const codes = [
+  { label: 'Forfait socials', code: '*650#' },
+  { label: 'Forfait appel', code: '*175#' },
 ]
 
 
@@ -43,7 +50,7 @@ export default function index() {
 
       <View style={[globalStyles.wrapper, { marginTop: 70 }]}>
 
-        <Text style={[styles.tabTitle, { marginVertical: 14}]}>Opérateurs</Text>
+        <Text style={[styles.tabTitle, { marginVertical: 14 }]}>Opérateurs</Text>
 
         <View style={styles.tabsContainer}>
           {tabs.map((tab, index) => (
@@ -63,12 +70,12 @@ export default function index() {
                 subTitle={service.subTitle}
                 icon={service.icon} >
 
-                <Text style={styles.textSmall}>React components wrap existing native code
-                  and interact with native APIs via React’s declarative UI paradigm
-                  and JavaScript. This enables native app development for whole new teams
-                  of developers</Text>
-                <View style={styles.seperator}></View>
-                <Button title='Something' variant='filled' />
+                <View style={{ marginTop: 0, paddingLeft: 10 }}>
+                  {codes.map((item, index) => (
+                    <CodeItem code={item.code} key={index} label={item.label} style={{ borderBottomWidth: index === codes.length - 1 ? 0 : 1, borderBottomColor: '#65B3BE99' }} />
+                  ))}
+                </View>
+
               </Accordion>
             ))}
 

@@ -9,6 +9,7 @@ import TabBar from '../components/TabBar';
 export default function _layout() {
   return (
     <Tabs
+    initialRouteName="index"
       screenOptions={{
         headerShown: false,
       }}

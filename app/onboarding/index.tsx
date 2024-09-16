@@ -133,7 +133,7 @@ function CarouselView({ image, title, desc }: { image: string, title: string, de
       </LinearGradient>
 
       <Text style={[globalStyles.title28, styles.title28_specific]}>{title}</Text>
-      <Text style={[globalStyles.body20, { marginHorizontal: 30, fontWeight: 400, marginTop: 20, textAlign: 'center', }]}>
+      <Text style={[globalStyles.title20Bold, { marginHorizontal: 30, fontWeight: 400, marginTop: 20, textAlign: 'center', }]}>
         {desc}
       </Text>
 

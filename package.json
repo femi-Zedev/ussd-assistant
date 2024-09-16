@@ -19,6 +19,7 @@
     "eas-cli": "^10.2.1",
     "expo": "~51.0.2",
     "expo-blur": "~13.0.2",
+    "expo-clipboard": "~6.0.3",
     "expo-dev-client": "~4.0.25",
     "expo-font": "~12.0.9",
     "expo-image": "~1.12.13",

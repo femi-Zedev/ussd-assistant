@@ -24,10 +24,11 @@ export default StyleSheet.create({
     maxHeight: '100%',
   },
 
-  body20: {
+  title20Bold: {
     fontSize: 20,
     color: "#FFFFFF",
-    fontFamily: 'Nunito-ExtraBold'
+    fontFamily: 'Nunito-ExtraBold',
+    fontWeight: '800'
     // fontFamily: 'Nunito_600SemiBold'
   },
 
@@ -87,6 +88,14 @@ export default StyleSheet.create({
 
   text16Regular: {
     fontSize: 16,
+    color: "#FFFFFF",
+    fontFamily: 'Nunito-ExtraBold',
+    fontWeight: '500'
+    // fontFamily: 'Nunito_600SemiBold'
+  },
+
+  text14Regular: {
+    fontSize: 14,
     color: "#FFFFFF",
     fontFamily: 'Nunito-ExtraBold',
     fontWeight: '500'

@@ -16,11 +16,11 @@ export default function SearchPage() {
     { label: 'forfait illimité' }
   ]
   const codes = [
-    { label: 'Forfait maxi ', code: '*880#' },
-    { label: 'Forfait illimité', code: '*140#' }
+    { label: 'Mobile money (MTN)', code: '*880#' },
+    { label: 'Mobile money (Celtiis)', code: '*889#' },
   ]
 
-  const { searchValue, setSearchValue } = useSearchValue()
+  const { searchValue } = useSearchValue()
 
   return (
     <View style={globalStyles.page}>
@@ -53,7 +53,7 @@ export default function SearchPage() {
         {searchValue.length > 0 &&
           <View style={{ marginTop: 20, paddingLeft: 10 }}>
             {codes.map((item, index) => (
-              <CodeItem  code='*880#' key={index} label={item.label} style={{ borderBottomWidth: index === history.length - 1 ? 0 : 1, borderBottomColor: Colors.gray.light }} />
+              <CodeItem  code={item.code} key={index} label={item.label} style={{ borderBottomWidth: index === history.length - 1 ? 0 : 1, borderBottomColor: Colors.gray.light }} />
             ))}
           </View>
         }

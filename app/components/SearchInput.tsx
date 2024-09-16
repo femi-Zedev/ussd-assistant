@@ -39,8 +39,9 @@ export default function SearchInput({ onChange, style, autoFocus, placeholder }:
 
 
       {searchValue.length > 0 && (
-        <TouchableOpacity style={{ height: 20, width: 20, borderRadius: 12}} onPress={() => setSearchValue('')}>
-          <Ionicons name="close-circle-sharp" size={20} color="#BBBBBB"  />
+    
+        <TouchableOpacity onPress={() => setSearchValue('')}>
+          <Ionicons name="close-circle-sharp" size={24} color="#BBBBBB"  />
         </TouchableOpacity>
       )}
     </View>
@@ -64,5 +65,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#BBBBBB',
     width: 180,
+    height: 24,
   },
 });

@@ -34,7 +34,7 @@ export default function DetectOperator() {
           style={styles.cancelButton}
           onPress={() => router.back()}
         >
-          <Text style={globalStyles.text16Regular} >Annuler</Text>
+          <Text style={globalStyles.text16Regular}>Retour</Text>
         </TouchableOpacity>
       </View>
     </View>

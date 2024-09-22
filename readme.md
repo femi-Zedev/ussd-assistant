@@ -1,7 +1,7 @@
 
 # USSD Assistant
 
-![](https://github.com/femi-Zedev/ussd-assistant/blob/main/public/animation.gif)
+![](https://github.com/femi-Zedev/ussd-assistant/blob/main/assets/animation.gif)
 ## Description du projet
 USSD Assistant est une petite application utilitaire pour retrouver facilement les services des opérateurs et les activer par USSD.
 

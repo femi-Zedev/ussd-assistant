@@ -13,7 +13,10 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": ["uber"]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -32,7 +35,9 @@
         "expo-asset",
         {
           "assets": [
-            "../assets/slider/slider1.png"
+            "../assets/slider/slider1.png",
+            "../assets/slider/slider2.png",
+            "../assets/slider/slider3.png"
           ]
         }
       ],

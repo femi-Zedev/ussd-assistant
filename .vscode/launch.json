@@ -1,0 +1,12 @@
+{
+  "configurations": [
+    {
+      "name": "Debug in Exponent - Experimental",
+      "request": "launch",
+      "type": "reactnative",
+      "cwd": "${workspaceFolder}",
+      "platform": "exponent",
+      "expoHostType": "tunnel"
+    }
+  ]
+}

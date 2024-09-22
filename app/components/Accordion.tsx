@@ -110,7 +110,8 @@ const styles = StyleSheet.create({
   accordBody: {
     display: 'flex',
     flexDirection: 'column',
-    padding: 16,
+    padding: 0,
+    paddingLeft: 16,
   },
 
 });

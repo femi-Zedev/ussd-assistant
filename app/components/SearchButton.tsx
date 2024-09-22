@@ -11,7 +11,7 @@ export default function SearchButton() {
       <TouchableOpacity
         accessibilityRole="button"
         style={styles.button}
-        onPress={() => router.push('/search')}>
+        onPress={() => router.push('/(tabs)/search')}>
         <EvilIcons name="search" size={24} color="white" />
         <Text style={styles.text}>rechercher</Text>
       </TouchableOpacity>

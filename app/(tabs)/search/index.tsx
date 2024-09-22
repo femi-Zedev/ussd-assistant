@@ -1,11 +1,11 @@
 import { View, Text, TouchableOpacity, StyleSheet, StyleProp } from 'react-native'
 import globalStyles from '@/app/globalStyle';
-import SearchInput from '../components/SearchInput';
+import SearchInput from '@/app//components/SearchInput';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
-import { useSearchValue } from '../providers/search.provider';
-import CodeItem from '../components/CodeItem';
+import { useSearchValue } from '@/app/providers/search.provider';
+import CodeItem from '@/app/components/CodeItem';
 
 
 export default function SearchPage() {

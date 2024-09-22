@@ -50,7 +50,7 @@ export default function index() {
 
       <View style={[globalStyles.wrapper, { marginTop: 70 }]}>
 
-        <Text style={[styles.tabTitle, { marginVertical: 14 }]}>Opérateurs</Text>
+        <Text style={[globalStyles.text18SemiBold, { marginVertical: 14 }]}>Opérateurs</Text>
 
         <View style={styles.tabsContainer}>
           {tabs.map((tab, index) => (

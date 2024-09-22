@@ -13,23 +13,19 @@ export default function Recent() {
   ]
 
   return (
-    // <View style={[globalStyles.wrapper, { marginTop: 70 }]}>
+    <View style={globalStyles.container}>
+      <View style={[globalStyles.wrapper, { marginTop: 70 }]}>
 
-    //   <Text style={[globalStyles.title20Bold, { marginVertical: 14 }]}>Récemment utilisé </Text>
+        <Text style={[globalStyles.text18SemiBold, { marginVertical: 14 }]}>Récemment utilisé </Text>
 
-    //   <View style={{ marginTop: 20, paddingLeft: 10 }}>
-    //     {codes.map((item, index) => (
-    //       <CodeItem code={item.code} key={index} label={item.label} style={{ borderBottomWidth: index === codes.length - 1 ? 0 : 1, borderBottomColor: Colors.gray.light }} />
-    //     ))}
-    //   </View>
+        <View style={{ marginTop: 20, paddingLeft: 10 }}>
+          {codes.map((item, index) => (
+            <CodeItem code={item.code} key={index} label={item.label} style={{ borderBottomWidth: index === codes.length - 1 ? 0 : 1, borderBottomColor: Colors.gray.light }} />
+          ))}
+        </View>
 
-    //   <SearchButton />
-
-
-
-    // </View>
-    <View style={styles.container}>
-      <Text>Tab [Settings]</Text>
+      </View>
+      <SearchButton />
     </View>
   );
 }

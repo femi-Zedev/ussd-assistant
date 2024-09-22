@@ -15,6 +15,7 @@ type Route = {
 function TabBar({ state, descriptors, navigation }: { state: any, descriptors: any, navigation: any }) {
 
   const { primary_dark, primary_base, primary_medium, background } = useTheme();
+  const filteredRoutes = state.routes.filter((route: Route) => ['index', 'recent', 'scan'].includes(route.name));
 
   const icons: Record<string, (props: any) => JSX.Element> = {
     index: (props) => <Menu color={primary_base} {...props} />,
@@ -59,7 +60,7 @@ function TabBar({ state, descriptors, navigation }: { state: any, descriptors: a
 
   return (
     <View style={styles.tabBar}>
-      {state.routes.map((route: Route, index: number) => {
+       {filteredRoutes.map((route: Route, index: number) => {
         const { options } = descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
@@ -102,9 +103,12 @@ function TabBar({ state, descriptors, navigation }: { state: any, descriptors: a
           >
             <View style={[styles.tabBarItem, { backgroundColor: isFocused ? primary_dark : 'transparent' }]}>
               {
-                icons[route.name]({
-                  color: isFocused ? primary_base : primary_medium,
-                })
+                // Check if the icon for the route exists before calling it
+                icons[route.name] ?
+                  icons[route.name]({
+                    color: isFocused ? primary_base : primary_medium,
+                  })
+                  : <Text>Icon Missing</Text> // Handle missing icon case
               }
               {
                 isFocused &&

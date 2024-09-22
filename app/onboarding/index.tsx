@@ -43,6 +43,7 @@ export default function Onboarding() {
 
   const [page, setPage] = useState(0);
   const pagerRef = useRef(null);
+  const indicatorWidth = 40;
 
 
   const handleNext = () => {
@@ -58,7 +59,7 @@ export default function Onboarding() {
     // @ts-ignore
     pagerRef.current.setPage(2); // Programmatically move to the next page
   }
-  
+
   const handleNavigateHome = () => {
     router.push('(tabs)');
     setFirstAppLaunch(false);
@@ -95,6 +96,21 @@ export default function Onboarding() {
               }}
             />
           ))}
+          {/* {Array.from({ length: steps.length - page }, (_, i) => i + 1).map((index) => {
+            console.log(index);
+            const currentPage = page + 1;
+            return (
+              <View
+                key={index}
+                style={{
+                  width: index === currentPage ? indicatorWidth * currentPage : indicatorWidth,
+                  height: 10,
+                  borderRadius: 8,
+                  backgroundColor: index === currentPage ? '#FFFFFF' : '#5B5B5B',
+                }}
+              />
+            );
+          })} */}
         </View>
 
         {/* Button de navigation */}

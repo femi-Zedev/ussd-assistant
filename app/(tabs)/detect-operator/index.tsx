@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React from 'react'
 import globalStyles from '@/app/globalStyle';
 import LottieView from "lottie-react-native";
@@ -7,37 +7,44 @@ import { usePhoneValue } from '@/app/providers/phone.provider';
 import { router } from 'expo-router';
 
 
+const DismissKeyboard = ({ children }: { children: React.ReactNode }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
+
+
 export default function DetectOperator() {
 
   const { phoneValue } = usePhoneValue();
   return (
-    <View style={globalStyles.page}>
-      <View style={[globalStyles.wrapper]}>
-        <View style={styles.scanContainer}>
-          <LottieView
-            source={require('../../../assets/animations/scan.json')}
-            style={{ width: "100%", height: 340 }}
-            autoPlay
-            loop
-          />
+    <DismissKeyboard>
+      <View style={globalStyles.page}>
+        <View style={[globalStyles.wrapper]}>
+          <View style={styles.scanContainer}>
 
+            <LottieView
+              source={require('../../../assets/animations/scan.json')}
+              style={{ width: "100%", height: 340 }}
+              autoPlay
+              loop
+            />
 
-          <PhoneInput
-            prefix='+229'
-            autoFocus
-            onChange={(value: string) => console.log(value)} />
+            <PhoneInput
+              prefix='+229'
+              autoFocus={false}
+              onChange={(value: string) => console.log(value)}
+            />
 
+          </View>
 
+          <TouchableOpacity style={styles.cancelButton} onPress={() => router.back()}>
+            <Text style={globalStyles.text16Regular}>Retour</Text>
+          </TouchableOpacity>
 
         </View>
-        <TouchableOpacity
-          style={styles.cancelButton}
-          onPress={() => router.back()}
-        >
-          <Text style={globalStyles.text16Regular}>Retour</Text>
-        </TouchableOpacity>
       </View>
-    </View>
+    </DismissKeyboard>
   )
 }
 

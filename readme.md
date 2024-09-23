@@ -8,7 +8,7 @@ USSD Assistant est une petite application utilitaire pour retrouver facilement l
 ## Fonctionnalités à mettre en place
 Les fonctionnalités à mettre en place sont entre autre:
 
-- Intégrer les écrans de la [maquette](https://www.figma.com/file/IU1yadOW6RMUlc9ZzCvnZt/Avatar-placeholder?type=design&node-id=359%3A1484&mode=design&t=c5pLIbcIvDr1KrUT-1) ☑️
+- Intégrer les écrans de la [maquette](https://www.figma.com/file/IU1yadOW6RMUlc9ZzCvnZt/Avatar-placeholder?type=design&node-id=359%3A1484&mode=design&t=c5pLIbcIvDr1KrUT-1) ☑️ fait
 - Rechercher un services
 - Détecter l'opérateur d'un numéro de téléphone
 

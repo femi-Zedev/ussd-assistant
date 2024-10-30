@@ -11,6 +11,7 @@ import { Globe } from '../icons/globe';
 import { Wallet } from '../icons/wallet';
 import CodeItem from '../components/CodeItem';
 import Colors from '@/constants/Colors';
+import useAppStore from '../store/appData';
 
 const tabs = ['MTN', 'MOOV', 'CELTIIS']
 
@@ -44,6 +45,7 @@ const codes = [
 export default function index() {
 
   const [activeTab, setActiveTab] = useState(0)
+  const { setFirstAppLaunch } = useAppStore()
 
   return (
     <View style={globalStyles.container}>
@@ -80,6 +82,8 @@ export default function index() {
             ))}
 
           </View>
+
+          {/* <Button title='Reset' onPress={() => setFirstAppLaunch(true)} variant='transparent'/> */}
 
         </View>
 

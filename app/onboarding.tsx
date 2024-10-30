@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View } from "react-native";
@@ -11,7 +11,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import PagerView from 'react-native-pager-view';
 import Button from "@/app/components/Button";
 import IconButton from "@/app/components/IconButton";
-import useAppStore from "../store/appData";
+import useAppStore from "./store/appData";
 
 interface Step {
   title: string;
@@ -23,21 +23,21 @@ const steps: Step[] = [
   {
     title: 'Ne mémorisez plus !',
     desc: 'Marre de mémoriser les codes de services GSM qui changent H24 ?',
-    image: require('../../assets/slider/slider1.png'),
+    image: require('./../assets/slider/slider1.png'),
   },
   {
     title: 'USSD Assistant',
     desc: 'USSD Assistant est la solution pour mettre fin à votre cauchemar !',
-    image: require('../../assets/slider/slider2.png'),
+    image: require('./../assets/slider/slider2.png'),
   },
   {
     title: 'Simple et pratique',
     desc: 'Tous les services de vos opérateurs préférés en un seul et même endroit !',
-    image: require('../../assets/slider/slider3.png'),
+    image: require('./../assets/slider/slider3.png'),
   },
 ]
 
-export default function Onboarding() {
+export default function Page() {
 
   const { setFirstAppLaunch } = useAppStore();
 

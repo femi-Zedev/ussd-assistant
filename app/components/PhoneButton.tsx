@@ -8,7 +8,7 @@ import { router } from 'expo-router';
 export default function PhoneButton() {
   return (
 
-    <TouchableOpacity style={[styles.phoneButton, { marginTop: 50 }]} onPress={() => router.push('/(tabs)/detect-operator')}>
+    <TouchableOpacity style={[styles.phoneButton, { marginTop: 50 }]} onPress={() => router.push('/detect-operator')}>
       <Text style={[globalStyles.text16Regular, { color: '#646C6D', }]}>
         Entrez le numéro ici
       </Text>

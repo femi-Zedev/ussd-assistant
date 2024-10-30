@@ -1,9 +1,10 @@
-import { View, TextInput, StyleSheet, StyleProp, TouchableOpacity, Text } from 'react-native'
-import React, { useState } from 'react'
-import { EvilIcons, Ionicons } from '@expo/vector-icons';
+import { View, Keyboard, StyleSheet, StyleProp, TouchableOpacity, Text, ActivityIndicator } from 'react-native'
+import React, { useRef, useState } from 'react'
+import { EvilIcons, FontAwesome6, Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 import { usePhoneValue } from '../providers/phone.provider';
 import MaskInput, { Masks, useMaskedInputProps } from 'react-native-mask-input';
+import LottieView from 'lottie-react-native';
 
 interface PhoneInputProps {
   onChange: (value: string) => void,
@@ -15,8 +16,9 @@ interface PhoneInputProps {
 
 export default function PhoneInput({ onChange, style, prefix, autoFocus, placeholder }: PhoneInputProps) {
 
-  const { phoneValue, setPhoneValue } = usePhoneValue();
+  const { debouncedPhoneValue, setDebouncedPhoneValue, isDebouncing } = usePhoneValue(); 
   const [isValid, setIsValid] = useState(false);
+  const inputRef = useRef<any>(null);
 
   const phoneMask = [
     /\d/, /\d/, ' ', // first two digits
@@ -26,51 +28,61 @@ export default function PhoneInput({ onChange, style, prefix, autoFocus, placeho
   ];
 
   const handlePhoneChange = (masked: string, unmasked: string) => {
-    setPhoneValue(masked);
     
+    setDebouncedPhoneValue(masked);
+    
+      if (debouncedPhoneValue.length === 8) {
+        setIsValid(true);
+      } else {
+        setIsValid(false);
+      }
     // Validate input (ensure it's exactly 8 digits, excluding spaces)
-    if (unmasked.length === 8) {
-      setIsValid(true);
-    } else {
-      setIsValid(false);
-    }
+   
+
+
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: Colors.gray.light }, style]}>
-      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-        <Text style={styles.prefix}>{prefix}</Text>
+    <View>
+      <TouchableOpacity
+        style={[styles.container, { backgroundColor: Colors.gray.light, borderWidth: 1, borderColor: debouncedPhoneValue.length > 0 && !isValid ? "#CF5656" : Colors.gray.light  }, style]}
+        onPress={() => inputRef.current?.focus()}>
 
-        {/* <TextInput
-          style={styles.textInput}
-          autoFocus={autoFocus}
-          onChangeText={(value) => handleChange(value)}
-          placeholder={placeholder}
-          value={phoneValue}
-          keyboardType="default"
-          selectionColor="red"
-        /> */}
+        <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+          <Text style={styles.prefix}>{prefix}</Text>
 
-        <MaskInput
-          style={styles.textInput}
-          autoFocus={autoFocus}
-          value={phoneValue}
-          onChangeText={handlePhoneChange}
-          mask={phoneMask}
-          keyboardType="numeric"
-          placeholder=""
-          keyboardAppearance='dark'
-        />
-      </View>
+          <MaskInput
+            ref={inputRef}  // Attach the ref to MaskInput
+            style={styles.textInput}
+            autoFocus={autoFocus}
+            value={debouncedPhoneValue}
+            onChangeText={handlePhoneChange}
+            mask={phoneMask}
+            keyboardType="numeric"
+            placeholder=""
+            keyboardAppearance='dark'
+          />
+        </View>
 
+        {isDebouncing &&
+          <LottieView
+            source={require('../../assets/animations/spinner.json')}
+            style={{ width: 24, height: 24 }}
+            autoPlay
+            loop
+          />
+        }
+      </TouchableOpacity>
 
-      {/* {!isValid && (
+      {(debouncedPhoneValue.length > 0 && !isValid) &&
+        <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 12, marginLeft: 4 }}>
+          <FontAwesome6 name="circle-exclamation" size={20} color="#CF5656" />
+          <Text style={{ color: "#CF5656", fontSize: 13, fontWeight: 500 }}>{isValid ? '' : 'Veuillez saisir un numéro de téléphone valide'}</Text>
+        </View>
+      }
 
-        <TouchableOpacity onPress={() => setPhoneValue('')}>
-          <Ionicons name="close-circle-sharp" size={24} color="#BBBBBB" />
-        </TouchableOpacity>
-      )} */}
     </View>
+
   )
 }
 

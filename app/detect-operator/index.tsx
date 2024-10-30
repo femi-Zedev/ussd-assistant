@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import globalStyles from '@/app/globalStyle';
 import LottieView from "lottie-react-native";
 import PhoneInput from '@/app/components/PhoneInput';
@@ -16,7 +16,25 @@ const DismissKeyboard = ({ children }: { children: React.ReactNode }) => (
 
 export default function DetectOperator() {
 
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
   const { phoneValue } = usePhoneValue();
+  const { isDebouncing } = usePhoneValue()
+
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+      setKeyboardVisible(true);
+    });
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+      setKeyboardVisible(false);
+    });
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
+
   return (
     <DismissKeyboard>
       <View style={globalStyles.page}>
@@ -24,23 +42,25 @@ export default function DetectOperator() {
           <View style={styles.scanContainer}>
 
             <LottieView
-              source={require('../../../assets/animations/scan.json')}
+              source={require('./../../assets/animations/scan.json')}
               style={{ width: "100%", height: 340 }}
-              autoPlay
-              loop
+              autoPlay={isDebouncing}
+              loop={isDebouncing}
             />
 
             <PhoneInput
               prefix='+229'
-              autoFocus={false}
+              autoFocus
               onChange={(value: string) => console.log(value)}
             />
 
           </View>
 
-          <TouchableOpacity style={styles.cancelButton} onPress={() => router.back()}>
-            <Text style={globalStyles.text16Regular}>Retour</Text>
-          </TouchableOpacity>
+          {!isKeyboardVisible &&
+            <TouchableOpacity style={styles.cancelButton} onPress={() => router.back()}>
+              <Text style={globalStyles.text16Regular}>Retour</Text>
+            </TouchableOpacity>
+          }
 
         </View>
       </View>
@@ -51,10 +71,10 @@ export default function DetectOperator() {
 const styles = StyleSheet.create({
 
   scanContainer: {
-    marginTop: 30,
+    marginTop: 40,
     display: 'flex',
     flexDirection: 'column',
-    gap: 40,
+    gap: 70,
     maxWidth: '100%',
   },
 

@@ -13,9 +13,12 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@apollo/client": "^3.11.8",
+    "@dotlottie/react-player": "^1.6.19",
     "@expo/vector-icons": "^14.0.0",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-navigation/native": "^6.0.2",
+    "apollo3-cache-persist": "^0.15.0",
     "eas-cli": "^10.2.1",
     "expo": "~51.0.2",
     "expo-blur": "~13.0.2",

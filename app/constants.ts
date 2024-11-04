@@ -1,0 +1,1 @@
+export const hygraph_endpoint = "https://us-west-2.cdn.hygraph.com/content/cm1fcyd9y00mz07uu2c6vx78y/master"

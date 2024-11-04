@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import SearchButton from '@/app/components/SearchButton';
 import globalStyles from '@/app/globalStyle';
@@ -12,6 +12,8 @@ import { Wallet } from '../icons/wallet';
 import CodeItem from '../components/CodeItem';
 import Colors from '@/constants/Colors';
 import useAppStore from '../store/appData';
+import { useQuery } from '@apollo/client';
+import { GET_SERVICES_BY_OPERATOR } from '../_services/getServiceByOperator';
 
 const tabs = ['MTN', 'MOOV', 'CELTIIS']
 
@@ -45,7 +47,18 @@ const codes = [
 export default function index() {
 
   const [activeTab, setActiveTab] = useState(0)
-  const { setFirstAppLaunch } = useAppStore()
+
+  const { data, loading, error } = useQuery(GET_SERVICES_BY_OPERATOR, {
+    variables: { operator: [tabs[activeTab].toLocaleLowerCase()] },
+  });
+
+  useEffect(() => {
+    console.log(tabs[activeTab].toLocaleLowerCase(), data)
+
+    if (data) {
+      console.log(data)
+    }
+  }, [activeTab])
 
   return (
     <View style={globalStyles.container}>
@@ -80,6 +93,13 @@ export default function index() {
 
               </Accordion>
             ))}
+
+            <View style={{ padding: 20, borderWidth: 1, borderColor: '#65B3BE99', borderRadius: 12, marginTop: 20 }}>
+              <Text style={[styles.textSmall, { color: "white"}]}>
+                {JSON.stringify(data)}
+              </Text>
+            </View>
+
 
           </View>
 
